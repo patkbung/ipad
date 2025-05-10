@@ -56,23 +56,6 @@ for (int i = 0; i < cols; i++) {
   strokeWeight(1);
   rect(x + w - 80, y + h - 75, 25, 25, 4);
 
-// -------------------------------------------------------------
-// Captures, saves  screenshot 
-void saveGridImage(float x, float y, float w, float h) {
-  float gridX = x + 60;
-  float gridY = y + 80;
-  int gw = cols * cellSize;
-  int gh = rows * cellSize;
-
-  PImage snapshot = get(int(gridX), int(gridY), gw, gh);
-  String filename = "game_color_grid_" + nf(saveCount, 3) + ".png";
-  snapshot.save(filename);
-  saveCount++; 
-
-  showSavedPopup = true;
-  popupTimer = 120;
-}
-
 // Show pop up
 if (showSavedPopup) {
   fill(0, 180);
@@ -89,4 +72,20 @@ if (showSavedPopup) {
     showSavedPopup = false;
   }
 }
+}
+// -------------------------------------------------------------
+// Captures, saves  screenshot 
+void saveGridImage(float x, float y, float w, float h) {
+  float gridX = x + 60;
+  float gridY = y + 80;
+  int gw = cols * cellSize;
+  int gh = rows * cellSize;
+
+  PImage snapshot = get(int(gridX), int(gridY), gw, gh);
+  String filename = "game_color_grid_" + nf(saveCount, 3) + ".png";
+  snapshot.save(filename);
+  saveCount++; 
+
+  showSavedPopup = true;
+  popupTimer = 120;
 }
