@@ -1,0 +1,33 @@
+//diary
+void drawPageFour(float x, float y, float w, float h) {
+  fill(7,16,23);
+  rect(x, y, w, h, 20);
+
+  fill(255);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("Diary", x + w / 2+120, y + 50);
+  
+  textSize(20);
+  text("Date: 10/02/2025", x + w / 2+120, y + 90);
+  textSize(13);
+  text("Today was one of those gentle, quiet days that feel like a dream.", x + w / 2+140, y + 130);
+  text("The sky was painted with soft blue and scattered cotton clouds. ", x + w / 2+140, y + 150);
+  text("The breeze was calm, carrying the scent of wildflowers. ", x + w / 2+140, y + 170);
+  text(" I found the perfect spot on the hill  ", x + w / 2+140, y + 190);
+  text(" just me and my favorite little jelly friend. ", x + w / 2+140, y + 210);
+  
+   text("We laid out the checkered blanket, sat under the wide sky,", x + w / 2+140, y + 250);
+   text("and simply listened to the wind. We didn't say much… ", x + w / 2+140, y + 270);
+   text("and didn't need to. Just being there together was enough.", x + w / 2+140, y + 290);
+   
+   text("The world felt far away, and time slowed down.", x + w / 2+140, y + 320);
+   text(" For a moment, everything was still — and beautifully simple.", x + w / 2+140, y + 340);
+   text("I wish days like this could last forever.", x + w / 2+140, y + 380);
+   
+    text("(me)", x + w / 2+150, y + 440);
+  // gif 
+  if (loopingGif != null) {
+  image(loopingGif, x + w/2 - loopingGif.width/2 - 200, y + h/2 - 244);
+  }
+}

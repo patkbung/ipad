@@ -1,0 +1,102 @@
+//dask
+// -------------------------------------------------------------
+Gif animatedGif;
+int saveCount = 1;
+
+// -------------------------------------------------------------
+void draw() {
+  background(220);
+
+  if (currentPage == -1) {
+    drawClosedBook();   //call desktop
+  } else {
+    drawOpenBook(currentPage); // Draw ana
+  }
+
+  fill(255);
+}
+
+
+
+// Draws the desktop page with animated GIF
+void drawClosedBook() {
+  float x = (width - bookWidth) / 2;
+  float y = (height - bookHeight) / 2;
+  float w = bookWidth;
+  float h = bookHeight;
+
+  // Load the animated GIF once
+  if (animatedGif == null) {
+    animatedGif = new Gif(this, "Sequence 01.gif");
+    animatedGif.loop();
+    animatedGif.pause();
+  }
+
+  // Check if mouse is hovering over the book area
+  boolean hovering = mouseX >= x && mouseX <= x + w &&
+                     mouseY >= y && mouseY <= y + h;
+
+  // Play or pause the GIF based on hover state
+  if (hovering && !animatedGif.isPlaying()) {
+    animatedGif.play();
+  } else if (!hovering && animatedGif.isPlaying()) {
+    animatedGif.pause();
+  }
+
+  // Display the GIF
+  image(animatedGif, x, y, w, h);
+
+  // Draw the book border
+  stroke(0);
+  strokeWeight(25);
+  noFill();
+  rect(x, y, w, h, 20);
+
+  // Load and set font if not already
+  if (myFont == null) {
+    myFont = createFont("Arial Rounded MT Bold", 1);
+  }
+
+  textFont(myFont);
+  fill(255);
+  textAlign(CENTER, CENTER);
+
+  // Display current time
+  String currentime = nf(hour(), 2) + ":" + nf(minute(), 2);
+  textSize(80);
+  text(currentime, width / 2, height / 2 - 170);
+
+  // Display current date
+  String datetime = nf(day(), 2) + "/" + nf(month(), 2) + "/" + year();
+  textSize(20);
+  text(datetime, width / 2, height / 2 - 220);
+}
+// -------------------------------------------------------------
+// drawOpenBook() - Draws content for the selected page number
+void drawOpenBook(int pageNum) {
+  float x = (width - bookWidth) / 2;
+  float y = (height - bookHeight) / 2;
+
+  switch (pageNum) {
+    case 1:
+      drawPageOne(x, y, bookWidth, bookHeight);
+      break;
+    case 2:
+      drawPageTwo(x, y, bookWidth, bookHeight);
+      break;
+    case 3:
+      drawPageThree(x, y, bookWidth, bookHeight);
+      break;
+    case 4:
+      drawPageFour(x, y, bookWidth, bookHeight);
+      break;
+    default:
+      fill(255);
+      rect(x, y, bookWidth, bookHeight, 20);
+      fill(0);
+      textSize(32);
+      textAlign(CENTER, CENTER);
+      text("Page " + pageNum, width / 2, height / 2);
+      break;
+  }
+}

@@ -1,0 +1,92 @@
+//game
+void drawPageThree(float x, float y, float w, float h) {
+  gridX = x + 60;
+  gridY = y + 80;
+  paletteX = x + 160;
+  paletteY = y + h - 75;
+  
+  fill(255);
+  rect(x, y, w, h, 20);
+
+  fill(0);
+  textSize(24);
+  textAlign(CENTER, CENTER);
+  text("Color Fill Game", x + w / 2, y + 30);
+
+
+  
+  // grid
+for (int i = 0; i < cols; i++) {
+  for (int j = 0; j < rows; j++) {
+      float cx = gridX + i * cellSize;
+      float cy = gridY + j * cellSize;
+    fill(gridColors[i][j]);
+    stroke(50);            
+    strokeWeight(1.2);     
+    rect(cx, cy, cellSize - 4, cellSize - 4, 5); 
+  }
+}
+
+  // Palette
+  textSize(16);
+  fill(0);
+   textAlign(LEFT, CENTER);
+  text("Select Color:", x + 40, y + h - 60);
+  
+
+  
+  color[] palette = {
+    color(255, 0, 0), color(0, 255, 0), color(0, 0, 255),
+    color(255, 255, 0), color(0), color(255)
+  };
+  
+  for (int i = 0; i < palette.length; i++) {
+    fill(palette[i]);
+    stroke(100);
+    strokeWeight(1);
+    rect(paletteX + i * 40, paletteY, 25, 25, 4);
+  }
+  // Selected
+ textAlign(RIGHT, CENTER);
+ fill(0);
+  text("Selected:", x + w - 100, y + h - 60);
+
+  fill(selectedColor);
+  stroke(100);
+  strokeWeight(1);
+  rect(x + w - 80, y + h - 75, 25, 25, 4);
+
+// -------------------------------------------------------------
+// Captures, saves  screenshot 
+void saveGridImage(float x, float y, float w, float h) {
+  float gridX = x + 60;
+  float gridY = y + 80;
+  int gw = cols * cellSize;
+  int gh = rows * cellSize;
+
+  PImage snapshot = get(int(gridX), int(gridY), gw, gh);
+  String filename = "game_color_grid_" + nf(saveCount, 3) + ".png";
+  snapshot.save(filename);
+  saveCount++; 
+
+  showSavedPopup = true;
+  popupTimer = 120;
+}
+
+// Show pop up
+if (showSavedPopup) {
+  fill(0, 180);
+  noStroke();
+  rect(x + w/2 - 60, y + h - 130, 120, 40, 10);
+
+  fill(255);
+  textSize(18);
+  textAlign(CENTER, CENTER);
+  text("Saved!", x + w/2, y + h - 110);
+
+  popupTimer--;
+  if (popupTimer <= 0) {
+    showSavedPopup = false;
+  }
+}
+}

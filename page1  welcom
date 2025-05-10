@@ -1,0 +1,47 @@
+//welcom page home
+void drawPageOne(float x, float y, float w, float h) {
+  fill(255);
+  rect(x, y, w, h, 20);
+
+  if (myFont == null) {
+    myFont = createFont("Arial Rounded MT Bold", 24); 
+  }
+  
+  textFont(myFont);
+  fill(0); 
+  textAlign(CENTER, CENTER);
+   
+  textSize(80);
+  text("Welcome", x + w / 2, y + h / 2 - 200);
+  
+  textSize(20);
+  text("Shut down",x + w / 2, y + h / 2 + 210);
+  
+  textSize(15);
+  text("Press'S'",x + w / 2, y + h / 2 + 230);
+  
+// lode box
+  if (img1 != null) {
+    image(img1, x + w/2 - img1.width/2-210, y + h/2 - 100); 
+  }
+  if (img4 != null) {
+    image(img4, x + w/2 - img4.width/2-210, y + h/2 - 90); 
+  }
+  
+  //--------------------------------------------------------
+  if (img2 != null) {
+    image(img2, x + w/2 - img2.width/2-0, y + h/2 - 100); 
+  }
+    if (img5 != null) {
+    image(img5, x + w/2 - img5.width/2-0, y + h/2 - 120); 
+  }
+  //-------------------------------------------------------
+  
+    if (img3 != null) {
+    image(img3, x + w/2 - img3.width/2+210, y + h/2 - 100);
+   }
+    if (img6 != null) {
+    image(img6, x + w/2 - img6.width/2+200, y + h/2 - 90);
+   }
+
+}

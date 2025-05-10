@@ -1,0 +1,50 @@
+//clock
+void drawPageTwo(float x, float y, float w, float hh) {
+  fill(7,16,23);
+  rect(x, y, w, hh, 20); //radius = 20
+
+  // 
+  fill(255);
+  noStroke();
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text("BANGKOK", x + w / 2, y + 40); 
+  //-------------------------------------------------------
+  String currentime = nf(hour(), 2) + ":" + nf(minute(), 2) + ":" + nf(second(), 2);
+  textSize(40);
+  text(currentime, width / 2, height / 2 +222);
+
+  // draw clock
+  fill(233,245,255);
+  stroke(0);
+  strokeWeight(4);
+  ellipse(cx, cy, clockDiameter, clockDiameter);
+
+  // cal 
+  float s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
+  float m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI; 
+  float h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
+
+  // draw 
+  stroke(255, 0, 0);
+  strokeWeight(1);
+  line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
+  stroke(0);
+  
+  strokeWeight(2);
+  line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
+  
+  strokeWeight(4);
+  line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);
+
+  // dot sec
+  strokeWeight(2);
+  beginShape(POINTS);
+  for (int a = 0; a < 360; a += 6) {
+    float angle = radians(a);
+    float px = cx + cos(angle) * secondsRadius;
+    float py = cy + sin(angle) * secondsRadius;
+    vertex(px, py);
+  }
+  endShape();
+}
